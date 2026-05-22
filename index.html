@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+  <html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>隐私政策 — OpenClaw Browser Relay | LumaClaw</title>
+    <meta name="description" content="OpenClaw Browser Relay Chrome 扩展隐私政策。说明本机数据存储、localhost 连接与
+   debugger 权限用途。" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --border: #e5e5e5;
+        --accent: #2563eb;
+        --bg: #fafafa;
+        --card: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text: #f0f0f0;
+          --muted: #a3a3a3;
+          --border: #333;
+          --accent: #60a5fa;
+          --bg: #111;
+          --card: #1a1a1a;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--text);
+        background: var(--bg);
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+      header {
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+      }
+      .meta {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .meta a { color: var(--accent); }
+      h2 {
+        font-size: 1.15rem;
+        margin: 2rem 0 0.75rem;
+        font-weight: 650;
+      }
+      p, li { margin: 0.6rem 0; }
+      ul { padding-left: 1.35rem; }
+      section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+      }
+      .lang-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      hr.divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 40px 0;
+      }
+      footer {
+        margin-top: 32px;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      code {
+        font-size: 0.88em;
+        padding: 0.15em 0.4em;
+        border-radius: 4px;
+        background: color-mix(in oklab, var(--border) 60%, transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>OpenClaw Browser Relay — 隐私政策</h1>
+        <p class="meta">
+          生效日期：2026年5月21日 &nbsp;|&nbsp;
+          运营方：<a href="https://www.lumaclaw.cn/">LumaClaw</a>（官网：<a
+  href="https://www.lumaclaw.cn/">https://www.lumaclaw.cn/</a>）<br />
+          适用产品：Chrome 扩展「OpenClaw Browser Relay」
+        </p>
+      </header>
+      <section lang="zh-CN">
+        <span class="lang-tag">简体中文</span>
+        <h2>1. 概述</h2>
+        <p>
+          「OpenClaw Browser Relay」（下称「本扩展」）是由 LumaClaw 提供的 Chrome
+  浏览器扩展，用于将<strong>您主动选择</strong>的标签页，通过 Chrome
+  开发者工具协议（CDP）中继到<strong>您本机</strong>上运行的 OpenClaw Gateway 浏览器中继服务（通常为
+  <code>127.0.0.1</code> 上的 WebSocket 路径 <code>/extension</code>），以便您本地的 AI 自动化工具操作该标签页。
+        </p>
+        <p>
+          本扩展<strong>不向 LumaClaw 或第三方服务器上传</strong>您的浏览内容、账号密码或完整浏览历史。除您在本机配
+  置的连接信息外，扩展本身不运营云端数据收集服务。
+        </p>
+        <h2>2. 我们处理哪些信息</h2>
+        <ul>
+          <li><strong>本机配置信息</strong>：您在扩展「选项」中填写的 Relay 端口、Gateway
+  令牌（token），保存在浏览器本地的 <code>chrome.storage.local</code> 中，仅用于连接本机 relay。</li>
+          <li><strong>会话状态</strong>：已附着标签页的会话标识、目标 ID 等，保存在
+  <code>chrome.storage.session</code> 中，用于扩展重启后恢复状态；数据留在您的设备上。</li>
+          <li><strong>浏览器调试数据</strong>：当您在某标签页点击工具栏图标「附着」后，该标签页产生的 CDP
+  命令与事件会经本扩展转发至<strong>本机</strong>
+  <code>ws://127.0.0.1:&lt;端口&gt;/extension</code>。该数据由您本机上的 OpenClaw / LumaClaw
+  栈处理，其处理方式受您所使用桌面软件及 OpenClaw 配置的约束，而非本网页单独收集。</li>
+        </ul>
+        <h2>3. 我们不收集什么</h2>
+        <ul>
+          <li>本扩展不包含广告、行为分析或用户画像 SDK。</li>
+          <li>本扩展不会将您的 Gateway 令牌或页面内容发送至 <code>lumaclaw.cn</code>
+  以外的远程地址（扩展的网络权限仅限于 <code>http://127.0.0.1</code> 与 <code>http://localhost</code>）。</li>
+          <li>未经您点击工具栏图标，本扩展不会附着任何标签页，也不会启用调试器。</li>
+        </ul>
+        <h2>4. 权限说明</h2>
+        <ul>
+          <li><strong>debugger</strong>：仅用于对您手动附着的标签页启用 CDP，并转发至本机 relay；用于本地 AI
+  浏览器自动化，非用于远程监控。</li>
+          <li><strong>tabs / activeTab</strong>：识别您点击扩展图标时的当前标签页，并在 relay
+  请求时管理标签（如激活、关闭）。</li>
+          <li><strong>storage</strong>：本地保存端口与令牌配置。</li>
+          <li><strong>alarms</strong>：在 Manifest V3 环境下维持后台服务 worker 健康检查与重连。</li>
+          <li><strong>webNavigation</strong>：在页面导航完成后更新附着状态显示。</li>
+          <li><strong>主机权限（127.0.0.1 / localhost）</strong>：仅用于与本机 OpenClaw relay 通信。</li>
+        </ul>
+        <h2>5. 数据存储与保留</h2>
+        <p>
+          配置与状态数据存储在您的 Chrome 配置目录中。您可通过卸载本扩展、在 <code>chrome://extensions</code>
+  中清除扩展数据，或删除本地保存的端口/令牌来移除相关数据。
+        </p>
+        <h2>6. 数据共享</h2>
+        <p>
+          我们不会出售、出租或以广告目的共享您的个人数据。本扩展不向第三方分析或广告网络传输数据。
+        </p>
+        <h2>7. 儿童隐私</h2>
+        <p>
+          本扩展面向具备技术能力的成年用户及开发者场景，不面向 13 周岁以下儿童主动收集个人信息。
+        </p>
+        <h2>8. 您的权利与选择</h2>
+        <ul>
+          <li>随时在选项页修改或删除端口与令牌。</li>
+          <li>随时点击工具栏图标拆下标签页，停止 CDP 中继。</li>
+          <li>停止使用：卸载扩展即可终止一切本地处理。</li>
+        </ul>
+        <h2>9. 政策变更</h2>
+        <p>
+          我们可能更新本政策并在本页面注明生效日期。重大变更时，我们会在官网或扩展说明中提示。继续使用本扩展即表示您
+  接受更新后的政策。
+        </p>
+        <h2>10. 联系我们</h2>
+        <p>
+          如对本政策或本扩展数据处理有疑问，请通过以下方式联系我们：<br />
+          网站：<a href="https://www.lumaclaw.cn/">https://www.lumaclaw.cn/</a><br />
+          邮箱：<a href="mailto:congrong512@vip.qq.com">congrong512@vip.qq.com</a>
+        </p>
+      </section>
+      <hr class="divider" />
+      <section lang="en">
+        <span class="lang-tag">English</span>
+        <h2>1. Overview</h2>
+        <p>
+          <strong>OpenClaw Browser Relay</strong> (“the Extension”) is a Chrome extension provided by LumaClaw. It
+  relays Chrome DevTools Protocol (CDP) traffic from <strong>tabs you explicitly attach</strong> to a
+  <strong>local</strong> OpenClaw Gateway browser relay on your computer (typically
+  <code>ws://127.0.0.1:&lt;port&gt;/extension</code>) so your on-device AI automation can control those tabs.
+        </p>
+        <p>
+          The Extension does <strong>not</strong> upload your browsing content, passwords, or full browsing history
+  to LumaClaw or third-party servers. Apart from connection settings you store locally, the Extension does not
+  operate a cloud data collection service.
+        </p>
+        <h2>2. Information We Process</h2>
+        <ul>
+          <li><strong>Local settings</strong>: Relay port and Gateway token you enter in Options, stored in
+  <code>chrome.storage.local</code> on your device.</li>
+          <li><strong>Session state</strong>: Attached tab session identifiers stored in
+  <code>chrome.storage.session</code> for recovery after service worker restarts.</li>
+          <li><strong>Debugging data</strong>: When you attach a tab, CDP commands and events are forwarded only to
+  your <strong>local</strong> relay. Further processing is governed by your local OpenClaw / LumaClaw stack, not by
+  this policy page alone.</li>
+        </ul>
+        <h2>3. What We Do Not Collect</h2>
+        <ul>
+          <li>No ads, analytics, or profiling SDKs in the Extension.</li>
+          <li>No transmission of tokens or page content to remote hosts other than your machine (host permissions
+  are limited to <code>127.0.0.1</code> and <code>localhost</code>).</li>
+          <li>No debugger attachment without your explicit toolbar click.</li>
+        </ul>
+        <h2>4. Permissions</h2>
+        <ul>
+          <li><strong>debugger</strong>: CDP for user-attached tabs only, forwarded to localhost relay.</li>
+          <li><strong>tabs / activeTab</strong>: Identify the active tab when you toggle attach/detach.</li>
+          <li><strong>storage</strong>: Persist local port and token settings.</li>
+          <li><strong>alarms</strong>: MV3 keepalive and relay health checks.</li>
+          <li><strong>webNavigation</strong>: Update status after navigation.</li>
+          <li><strong>Host access (127.0.0.1 / localhost)</strong>: Local relay communication only.</li>
+        </ul>
+        <h2>5. Retention & Deletion</h2>
+        <p>
+          Data remains on your device until you uninstall the Extension, clear extension data in Chrome, or delete
+  your saved settings.
+        </p>
+        <h2>6. Sharing</h2>
+        <p>
+          We do not sell or share your data with third-party advertisers or analytics networks.
+        </p>
+        <h2>7. Children</h2>
+        <p>
+          The Extension is intended for adult developers and power users; we do not knowingly collect personal
+  information from children under 13.
+        </p>
+        <h2>8. Your Choices</h2>
+        <ul>
+          <li>Edit or remove port and token in Options at any time.</li>
+          <li>Detach tabs via the toolbar to stop relaying.</li>
+          <li>Uninstall the Extension to stop all local processing.</li>
+        </ul>
+        <h2>9. Changes</h2>
+        <p>
+          We may update this policy and revise the effective date above. Continued use after changes constitutes
+  acceptance.
+        </p>
+        <h2>10. Contact</h2>
+        <p>
+          Website: <a href="https://www.lumaclaw.cn/">https://www.lumaclaw.cn/</a><br />
+          Email: <a href="mailto:congrong512@vip.qq.com">congrong512@vip.qq.com</a>
+        </p>
+      </section>
+      <footer>
+        <p>© 2026 LumaClaw. OpenClaw Browser Relay. All rights reserved.</p>
+        <p><a href="https://www.lumaclaw.cn/">返回官网</a></p>
+      </footer>
+    </div>
+  </body>
+  </html>
